@@ -1,0 +1,180 @@
+.page__container {
+    margin-right: 200px;
+    margin-left: 200px;
+    max-width: 1280px;
+}
+
+.page {
+    background-color: #000000;
+}
+
+.page__container-edit {
+    opacity: .5;
+}
+
+.header__logo {
+    width: 173px;
+    height: 33px;
+    margin-top: 45px;
+}
+
+@media screen and (max-width: 540px) {
+    .header__logo {
+        width: 126px;
+        height: 24px;
+        margin-top: 28px;
+    }
+}
+
+.header__line {
+    border:1px solid #545454;
+    margin-top: 41px;
+    opacity: .7;
+  }
+
+  .profile__avatar {
+    
+    width: 120px;
+    margin-top: 40px;
+    border-radius: 50%;
+  }
+
+  .profile__card {
+      
+  }
+
+  .profile__card-name {
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 42px;
+    line-height: 48px;
+    color: #FFFFFF;
+    list-style: none;
+  }
+
+  .profile__card-profession {
+    font-family: Inter;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 22px;
+    color: #FFFFFF;
+    list-style: none;
+  }
+
+  .profile__edit {
+      /* background-image: url(../images/Edit\ Button.svg);
+      background-repeat: no-repeat; */
+      width: 24px;
+      height: 24px;
+      background-color: black;
+      border: 1px solid white;
+      cursor: pointer;
+  }
+
+
+
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, auto);
+    gap: 17px 20px;
+    padding: 0;
+    margin-top: 50px;
+  }
+   
+@media screen and (max-width: 540px) {
+    .gallery {
+        grid-template-columns: repeat(1, 1fr);
+        grid-template-rows: repeat(6, auto);
+        gap: 17px 20px;
+        padding: 0;
+        margin-top: 36px;
+    }
+}
+
+  .gallery__item {
+      border-radius: 10%;
+      background-color: white;
+  }
+
+  .gallery__image {
+      width: 100%;
+      border-top-left-radius: 10%;
+      border-top-right-radius: 10%;
+  }
+
+  .gallery__description {
+      display: flex;
+      justify-content: space-between;
+      margin-right: 15px;
+      margin-left: 21px;
+  }
+
+  .gallery__title {
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 24px;
+    line-height: 29px;
+    color: #000000;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+
+  .footer__copyright {
+    font-family: Inter;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 22px;
+    color: #545454;
+    margin-top: 68px;
+    margin-bottom: 60px;
+  }
+
+  .modal {
+    width: 430px;
+    height: 330px;
+    display: none;
+          /* width: 100vw;
+    height: 100vh;
+    opacity: .5; */
+  }
+
+  .modal__open {
+      display: flex;
+  }
+
+  .modal__container {
+      padding: 34px 36px 36px 36px;
+      background-color: white;
+      border-radius: 10px;
+      position: relative;
+  }
+
+  .modal__close-button {
+      background-image: url(../images/Close\ Icon.svg);
+      background-repeat: no-repeat;
+      width: 40px;
+      height: 40px;
+      position: absolute;
+      top: -40px;
+      right: -40px;
+  }
+
+  .modal__title {
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 24px;
+    line-height: 29px;
+    color: #000000;
+    margin: 0;
+  }
+
+  .form {
+      
+  }
