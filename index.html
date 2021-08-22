@@ -16,13 +16,20 @@
             <hr class="header__line">
         </header>
         <div class="profile">
-            <img src="./images/avatar.jpg" alt="artist avatar" class="profile__avatar">
-            <ul class="profile__scard">
-                <li class="profile__card-name">Jacques Cousteau</li>
-                <li class="profile__card-profession">Explorer</li>
-            </ul>
-            <button class="profile__edit">
-                <img src="./images/Vector.svg" alt="" class="profile__edit-img">
+            <div class="profile__card">
+                <img src="./images/avatar.jpg" alt="artist avatar" class="profile__avatar">
+                <ul class="profile__input">
+                    <div class="profile__row">
+                        <li class="profile__card-name">Jacques Cousteau</li>
+                        <button class="profile__edit">
+                            <img src="./images/Vector.svg" alt="" class="profile__edit-img">
+                        </button>
+                    </div>
+                    <li class="profile__card-profession">Explorer</li>
+                </ul>
+            </div>
+            <button class="profile__add">
+                <img src="./images/add.svg" alt="" class="profile__add-img">
             </button>
         </div>
         <ul class="gallery">
@@ -81,12 +88,13 @@
             <h3 class="modal__title">Edit profile</h3>
             <form action="#" class="form">
                 <input type="text" class="form__input form__input_type-name" placeholder="name" name="name">
-                <input type="text" class="form__input form__input_type-profession" placeholder="profession" name="profession">
+                <input type="text" class="form__input form__input_type-profession" placeholder="profession"
+                    name="profession">
                 <button class="form__button">Save</button>
             </form>
         </div>
     </div>
-<script src="./index.js" type=""text/javascript"></script>
+    <script src="./index.js" type="" text/javascript"></script>
 </body>
 
 </html>
