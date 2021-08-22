@@ -1,0 +1,4 @@
+@media screen and (max-width: 540px) {
+  .profile__input {
+    padding: 0;
+  }

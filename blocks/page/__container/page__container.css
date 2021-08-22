@@ -1,0 +1,9 @@
+.page__container {
+    max-width: 1280px;
+}
+
+@media screen and (max-width: 540px) {
+    .page__container {
+        max-width: 282px;
+    }
+}

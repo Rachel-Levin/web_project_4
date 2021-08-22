@@ -1,0 +1,22 @@
+.profile__card-profession {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 22px;
+    color: #FFFFFF;
+    list-style: none;
+  } 
+
+   @media screen and (max-width: 760px) {
+    .profile__card-profession {
+        font-size: 16px;
+        line-height: 19px;
+    }
+}
+
+@media screen and (max-width: 560px) {
+    .profile__card-profession {
+        font-size: 14px;
+        line-height: 17px;
+    }
+}

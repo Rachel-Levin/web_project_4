@@ -1,0 +1,5 @@
+.gallery__item {
+    border-radius: 10%;
+    background-color: white;
+    min-width: 100%;
+}

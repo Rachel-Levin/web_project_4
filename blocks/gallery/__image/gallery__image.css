@@ -1,0 +1,5 @@
+.gallery__image {
+    width: 100%;
+    border-top-left-radius: 10%;
+    border-top-right-radius: 10%;
+}

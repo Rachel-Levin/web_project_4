@@ -1,0 +1,6 @@
+.modal__container {
+    padding: 34px 36px 36px 36px;
+    background-color: white;
+    border-radius: 10px;
+    position: relative;
+}
