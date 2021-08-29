@@ -14,5 +14,8 @@
       height: 322px;
       top: 123px;
       left: calc(50% - 141px);
+      margin-left: auto;
+            margin-top: 123px;
+
   }
 }

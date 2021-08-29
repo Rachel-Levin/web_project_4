@@ -5,6 +5,9 @@
   border: 1px solid white;
   cursor: pointer;
   margin-left: 18px;
+  background-image: url(../../../images/Vector.svg);
+  background-repeat: no-repeat;
+  background-position: center;
 } 
 
 .profile__edit:hover {

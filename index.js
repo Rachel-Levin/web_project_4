@@ -2,20 +2,20 @@ const editButton = document.querySelector('.profile__edit')
 const modal = document.querySelector('.modal')
 const close = document.querySelector('.modal__close-button')
 const form = document.querySelector('.form')
-const inputName = document.querySelector('.form__input_type-name')
-const inputProfession = document.querySelector('.form__input_type-profession')
+const inputName = document.querySelector('.form__input-name')
+const inputProfession = document.querySelector('.form__input-profession')
 const userName = document.querySelector('.profile__card-name')
 const userProfession = document.querySelector('.profile__card-profession')
 const container = document.querySelector('.page__container')
 
 editButton.addEventListener('click', function(){
     modal.classList.add('modal__open')
-    container.classList.add('page__container-edit')
+    // container.classList.add('page__container-edit')
 })
 
 function closeModal() {
     modal.classList.remove('modal__open')
-    container.classList.remove('page__container-edit')
+    // container.classList.remove('page__container-edit')
 
 }
 
@@ -33,4 +33,3 @@ form.addEventListener('submit', function(e) {
     closeModal()
 
 })
-console.log(modal)

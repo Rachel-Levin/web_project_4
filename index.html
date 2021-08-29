@@ -13,85 +13,84 @@
     <div class="page__container">
         <header class="header">
             <img src="./images/logo.svg" alt="text: around the US" class="header__logo">
-            <hr class="header__line">
+            <!-- <hr class="header__line"> -->
         </header>
-        <div class="profile">
-            <div class="profile__card">
-                <img src="./images/avatar.jpg" alt="artist avatar" class="profile__avatar">
-                <ul class="profile__input">
-                    <div class="profile__row">
-                        <li class="profile__card-name">Jacques Cousteau</li>
-                        <button class="profile__edit">
-                            <img src="./images/Vector.svg" alt="a pencil" class="profile__edit-img">
-                        </button>
+        <main>
+            <div class="profile">
+                <div class="profile__card">
+                    <img src="./images/avatar.jpg" alt="artist avatar" class="profile__avatar">
+                    <div class="profile__input">
+                        <div class="profile__row">
+                            <div class="profile__card-name">Jacques Cousteau</div>
+                            <button class="profile__edit"></button>
+                        </div>
+                        <div class="profile__card-profession">Explorer</div>
                     </div>
-                    <li class="profile__card-profession">Explorer</li>
-                </ul>
+                </div>
+                <button class="profile__add"></button>
             </div>
-            <button class="profile__add">
-                <img src="./images/add.svg" alt="a plus" class="profile__add-img">
-            </button>
-        </div>
-        <ul class="gallery">
-            <li class="gallery__item">
-                <img src="./images/gallery/kirill-pershin-2.jpg" alt="mountains and river" class="gallery__image">
-                <div class="gallery__description">
-                    <p class="gallery__title">Yosemite Valley</p>
-                    <img src="./images/gallery/like.svg" alt="like" class="gallery__like">
-                </div>
-            </li>
-            <li class="gallery__item">
-                <img src="./images/gallery/kirill-pershin-4.jpg" alt="lake and mountains" class="gallery__image">
-                <div class="gallery__description">
-                    <p class="gallery__title">Lake Louise</p>
-                    <img src="./images/gallery/like.svg" alt="like" class="gallery__like">
-                </div>
-            </li>
-            <li class="gallery__item">
-                <img src="./images/gallery/kirill-pershin-6.jpg" alt="sunset in mountains" class="gallery__image">
-                <div class="gallery__description">
-                    <p class="gallery__title">Bald Mountains</p>
-                    <img src="./images/gallery/like.svg" alt="like" class="gallery__like">
-                </div>
-            </li>
-            <li class="gallery__item">
-                <img src="./images/gallery/kirill-pershin-3.jpg" alt="Night in the mountains" class="gallery__image">
-                <div class="gallery__description">
-                    <p class="gallery__title">Latemar</p>
-                    <img src="./images/gallery/like.svg" alt="like" class="gallery__like">
-                </div>
-            </li>
-            <li class="gallery__item">
-                <img src="./images/gallery/kirill-pershin-5.jpg" alt="the mountain is reflected in the lake"
-                    class="gallery__image">
-                <div class="gallery__description">
-                    <p class="gallery__title">Vanoise National Park</p>
-                    <img src="./images/gallery/like.svg" alt="like" class="gallery__like">
-                </div>
-            </li>
-            <li class="gallery__item">
-                <img src="./images/gallery/kirill-pershin-1.jpg" alt="pier with boats in a mountain lake"
-                    class="gallery__image">
-                <div class="gallery__description">
-                    <p class="gallery__title">Lago di Braies</p>
-                    <img src="./images/gallery/like.svg" alt="like" class="gallery__like">
-                </div>
-            </li>
-        </ul>
+            <ul class="gallery">
+                <li class="gallery__item">
+                    <img src="./images/gallery/kirill-pershin-2.jpg" alt="mountains and river" class="gallery__image">
+                    <div class="gallery__description">
+                        <p class="gallery__title">Yosemite Valley</p>
+                        <button class="gallery__like"></button>
+                    </div>
+                </li>
+                <li class="gallery__item">
+                    <img src="./images/gallery/kirill-pershin-4.jpg" alt="lake and mountains" class="gallery__image">
+                    <div class="gallery__description">
+                        <p class="gallery__title">Lake Louise</p>
+                        <button class="gallery__like"></button>
+                    </div>
+                </li>
+                <li class="gallery__item">
+                    <img src="./images/gallery/kirill-pershin-6.jpg" alt="sunset in mountains" class="gallery__image">
+                    <div class="gallery__description">
+                        <p class="gallery__title">Bald Mountains</p>
+                        <button class="gallery__like"></button>
+                    </div>
+                </li>
+                <li class="gallery__item">
+                    <img src="./images/gallery/kirill-pershin-3.jpg" alt="Night in the mountains"
+                        class="gallery__image">
+                    <div class="gallery__description">
+                        <p class="gallery__title">Latemar</p>
+                        <button class="gallery__like"></button>
+                    </div>
+                </li>
+                <li class="gallery__item">
+                    <img src="./images/gallery/kirill-pershin-5.jpg" alt="the mountain is reflected in the lake"
+                        class="gallery__image">
+                    <div class="gallery__description">
+                        <p class="gallery__title">Vanoise National Park</p>
+                        <button class="gallery__like"></button>
+                    </div>
+                </li>
+                <li class="gallery__item">
+                    <img src="./images/gallery/kirill-pershin-1.jpg" alt="pier with boats in a mountain lake"
+                        class="gallery__image">
+                    <div class="gallery__description">
+                        <p class="gallery__title">Lago di Braies</p>
+                        <button class="gallery__like"></button>
+                    </div>
+                </li>
+            </ul>
+        </main>
         <footer class="footer">
             <p class="footer__copyright">© 2021 Around The U.S.</p>
         </footer>
     </div>
     <div class="modal">
         <div class="modal__container">
-            <div class="modal__close-button"></div>
-            <h3 class="modal__title">Edit profile</h3>
-            <form action="#" class="form">
-                <input type="text" class="form__input form__input_type-name" placeholder="name" name="name">
-                <input type="text" class="form__input form__input_type-profession" placeholder="profession"
-                    name="profession">
-                <button class="form__button">Save</button>
-            </form>
+            <button class="modal__close-button"></button>
+            <h1 class="modal__title">Edit profile</h3>
+                <form action="#" class="form">
+                    <input type="text" class="form__input form__input-name" placeholder="name" name="name">
+                    <input type="text" class="form__input form__input-profession" placeholder="profession"
+                        name="profession">
+                    <button class="form__button">Save</button>
+                </form>
         </div>
     </div>
     <script src="./index.js"></script>

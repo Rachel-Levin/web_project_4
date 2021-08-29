@@ -11,6 +11,7 @@
     .profile__card-profession {
         font-size: 16px;
         line-height: 19px;
+        margin-top: 14px;
     }
 }
 
@@ -18,5 +19,6 @@
     .profile__card-profession {
         font-size: 14px;
         line-height: 17px;
+        text-align: center;
     }
 }

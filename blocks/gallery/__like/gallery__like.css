@@ -1,0 +1,25 @@
+.gallery__like {
+  background-image: url(../../../images/gallery/like.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 24px;
+    height: 25px;
+    border: none;
+    background-color: white;
+} 
+
+/* @media screen and (max-width: 760px) {
+  .gallery {
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: repeat(3, auto);
+      margin-top: 42px;
+  }
+}
+ 
+@media screen and (max-width: 540px) {
+  .gallery {
+      grid-template-columns: repeat(1, 1fr);
+      grid-template-rows: repeat(6, auto);
+      margin-top: 36px;
+  }
+}  */

@@ -4,6 +4,9 @@
   background-color: black;
   border: 1px solid white;
   cursor: pointer;
+  background-image: url(../../../images/add.svg);
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 .profile__add:hover {

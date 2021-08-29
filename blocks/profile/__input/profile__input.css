@@ -1,5 +1,12 @@
+.profile__input {
+  margin-left: 30px;
+}
+
 @media screen and (max-width: 540px) {
   .profile__input {
     padding: 0;
+    margin-bottom: 36px;
+    margin-top: 26px;
+    margin-left: 0;
   }
 }
