@@ -1,22 +1,24 @@
-.profile__card-name {
+.profile__name {
   font-style: normal;
   font-weight: 500;
   font-size: 42px;
   line-height: 48px;
   color: #FFFFFF;
   list-style: none;
+  margin: 62px 0 0 0;
 }
 
 @media screen and (max-width: 760px) {
-  .profile__card-name {
+  .profile__name {
       font-size: 32px;
       line-height: 37px;
   }
 }
 
 @media screen and (max-width: 540px) {
-  .profile__card-name {
+  .profile__name {
       font-size: 22px;
       line-height: 27px;
-  }
+      margin: 26px 0 0 0;
+      }
 }

@@ -24,8 +24,8 @@
 @import url('../blocks/profile/__add/profile__add.css');
 @import url('../blocks/profile/__avatar/profile__avatar.css');
 @import url('../blocks/profile/__card/profile__card.css');
-@import url('../blocks/profile/__card-name/profile__card-name.css');
-@import url('../blocks/profile/__card-profession/profile__card-profession.css');
+@import url('../blocks/profile/__name/profile__name.css');
+@import url('../blocks/profile/__job/profile__job.css');
 @import url('../blocks/profile/__edit/profile__edit.css');
 @import url('../blocks/profile/__input/profile__input.css');
 @import url('../blocks/profile/__row/profile__row.css');
