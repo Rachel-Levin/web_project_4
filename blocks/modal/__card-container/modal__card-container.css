@@ -1,0 +1,10 @@
+.modal__card-container {
+  margin: 90px auto auto auto;
+  position: relative;
+}
+
+@media screen and (max-width: 540px) {
+  .modal__card-container {
+      margin: 136px auto auto auto;
+  }
+}
