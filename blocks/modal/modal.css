@@ -1,9 +1,4 @@
 .modal {
-  width: 430px;
-  height: 330px;
-  /* display: none; */
-  top: 195px;
-  left: calc(50% - 215px);
   position: fixed;
   width: 100%;
 
