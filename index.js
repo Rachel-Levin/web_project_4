@@ -4,7 +4,7 @@ const userName = document.querySelector('.profile__name');
 const userProfession = document.querySelector('.profile__job');
 // const cardTitle = document.querySelector('.')
 //modals
-const editModal = document.querySelector('.modal__profile-edit');
+const editModal = document.querySelector('.modal__profile_type_edit');
 const addCardModal = document.querySelector('.modal__add-card');
 //closeButtons
 const editModalCloseButton = editModal.querySelector('.modal__close-button');
