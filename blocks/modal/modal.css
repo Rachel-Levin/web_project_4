@@ -1,11 +1,22 @@
 .modal {
   width: 430px;
   height: 330px;
-  display: none;
+  /* display: none; */
   top: 195px;
   left: calc(50% - 215px);
-  position: absolute;
+  position: fixed;
+  width: 100%;
 
+  display: flex;
+  left: 0;
+  top: 0;
+  background: rgba(0,0,0,0.5);
+  
+  height: 100vh;
+
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0.5s, opacity 0.5s linear;
 }
 
 @media screen and (max-width: 540px) {
@@ -15,7 +26,6 @@
       top: 123px;
       left: calc(50% - 141px);
       margin-left: auto;
-            margin-top: 123px;
 
   }
 }
