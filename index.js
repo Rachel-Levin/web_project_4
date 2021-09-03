@@ -4,8 +4,8 @@ const userName = document.querySelector('.profile__name');
 const userProfession = document.querySelector('.profile__job');
 // const cardTitle = document.querySelector('.')
 //modals
-const editModal = document.querySelector('.modal__edit_profile');
-const addCardModal = document.querySelector('.modal__add_card');
+const editModal = document.querySelector('.modal__editprofile');
+const addCardModal = document.querySelector('.modal__addcard');
 //closeButtons
 const editModalCloseButton = editModal.querySelector('.modal__close-button');
 const addCardModalCloseButton = addCardModal.querySelector('.modal__close-button');
@@ -21,7 +21,7 @@ const inputCardLink = addCardModal.querySelector('.form__input-card-link');
 const editForm = editModal.querySelector('.form');
 const addForm = addCardModal.querySelector('.form');
 //images
-const imageOpen = document.querySelector(".modal__open_card");
+const imageOpen = document.querySelector(".modal__opencard");
 const imageActive = imageOpen.querySelector(".gallery__image_active");
 const titleImageActive = imageOpen.querySelector(".gallery__title_active");
 const imageOpenCloseButton = imageOpen.querySelector(".modal__card-close-button");
