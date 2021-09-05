@@ -96,9 +96,9 @@ const initialCards = [
   ];
   
   function generateCard(cardDate) {
-    const itemTemplate = document.querySelector("#gallery__item").content;
-    const itemElement = itemTemplate.querySelector(".gallery__item").cloneNode(true);
-    const gallery = document.querySelector(".gallery");
+    const itemTemplate = document.querySelector("#gallery").content;
+    const itemElement = itemTemplate.querySelector(".gallery").cloneNode(true);
+    const gallery = document.querySelector(".cards");
     const deleteCard = itemElement.querySelector(".gallery__delete");
     const likeCard = itemElement.querySelector(".gallery__like");
     const image = itemElement.querySelector(".gallery__image");
