@@ -17,7 +17,7 @@
 @import url('../blocks/header/header.css');
 @import url('../blocks/header/__logo/header__logo.css');
 @import url('../blocks/modal/modal.css');
-@import url('../blocks/modal/__open-card/modal__open-card.css');
+@import url('../blocks/modal-card-open/modal-open-card.css');
 @import url('../blocks/modal/__open-card-active/modal__open-card-active.css');
 @import url('../blocks/modal/__card-container/modal__card-container.css');
 @import url('../blocks/modal/__card-close-button/modal__card-close-button.css');
