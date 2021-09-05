@@ -22,8 +22,8 @@ const editForm = editModal.querySelector('.form');
 const addForm = addCardModal.querySelector('.form');
 //images
 const imageOpen = document.querySelector(".modal-open-card");
-const imageActive = imageOpen.querySelector(".gallery__image-active");
-const titleImageActive = imageOpen.querySelector(".gallery__title-active");
+const imageActive = imageOpen.querySelector(".modal__image-active");
+const titleImageActive = imageOpen.querySelector(".modal__title-active");
 const imageOpenCloseButton = imageOpen.querySelector(".modal__card-close-button");
 function toggleModal (modal) {
     modal.classList.toggle("modal__open");

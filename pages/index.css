@@ -8,8 +8,8 @@
 @import url('../blocks/gallery/__description/gallery__description.css');
 @import url('../blocks/gallery/__image/gallery__image.css');
 @import url('../blocks/gallery/__like/gallery__like.css');
-@import url('../blocks/gallery/__title-active/gallery__title-active.css');
-@import url('../blocks/gallery/__image-active/gallery__image-active.css');
+@import url('../blocks/modal/__title-active/modal__title-active.css');
+@import url('../blocks/modal/__image-active/modal__image-active.css');
 @import url('../blocks/gallery/__like-active/gallery__like-active.css');
 @import url('../blocks/gallery/__delete/gallery__delete.css');
 @import url('../blocks/gallery/gallery.css');

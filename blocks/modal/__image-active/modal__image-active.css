@@ -1,10 +1,10 @@
-.gallery__image-active {
+.modal__image-active {
   width: 430px;
   height: 540px;
 }
 
 @media screen and (max-width: 540px) {
-  .gallery__image-active {
+  .modal__image-active {
       width: 100%;
   }
 } 
