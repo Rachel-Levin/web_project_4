@@ -1,3 +1,19 @@
+function toggleButtonState (inputs, button, settings) {
+    console.log(1213);
+    const {inactiveButtonClass} = settings;
+    const isFormValid = inputs.every(input =>  {
+     return input.validity.valid})
+    if(isFormValid){
+      button.disabled = false;
+      button.classList.remove(inactiveButtonClass);
+    } else {
+      console.log(button, button.classList);
+      button.classList.add(inactiveButtonClass);
+      button.disabled = 'disabled';
+    }
+  }
+  
+
 function showError (input, settings) {
     const {inputErrorClass, errorClass} = settings;
     const error = input.validationMessage;

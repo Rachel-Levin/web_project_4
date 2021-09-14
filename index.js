@@ -37,6 +37,10 @@ function openModal(modal) {
   modal.classList.add("modal__open");
   document.addEventListener("click", closeFormOverlay);
   document.addEventListener("keyup", closeFormEsc);
+  const inputs = [...modal.querySelectorAll(config.inputSelector)];
+  inputs.forEach(input => {
+      hideError(input, config);
+  });
 };
 
 function closeModal(modal) {
@@ -167,17 +171,3 @@ imageOpenCloseButton.addEventListener("click", () => {
   closeModal(imageOpen);
 });
 
-function toggleButtonState (inputs, button, settings) {
-  console.log(1213);
-  const {inactiveButtonClass} = settings;
-  const isFormValid = inputs.every(input =>  {
-   return input.validity.valid})
-  if(isFormValid){
-    button.disabled = false;
-    button.classList.remove(inactiveButtonClass);
-  } else {
-    console.log(button, button.classList);
-    button.classList.add(inactiveButtonClass);
-    button.disabled = 'disabled';
-  }
-}
