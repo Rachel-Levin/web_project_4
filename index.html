@@ -43,9 +43,10 @@
             <button class="modal__close-button"></button>
             <h2 class="modal__title">Edit profile</h2>
             <form action="#" class="form">
-                <input type="text" class="form__input form__input-name" placeholder="name" name="name">
-                <input type="text" class="form__input form__input-profession" placeholder="profession"
-                    name="profession">
+                <input id="name-input" type="text" class="form__input form__input-name" placeholder="name" name="name" required minlength="2" maxlength="40">
+                <span id="name-input-error"></span>
+                <input id="job-input" type="text" class="form__input form__input-profession" placeholder="profession" name="profession" required minlength="2" maxlength="200">
+                <span id="job-input-error"></span>
                 <button class="form__button" type="submit">Save</button>
             </form>
         </div>
@@ -56,10 +57,11 @@
             <button class="modal__close-button"></button>
             <h2 class="modal__title">New place</h2>
             <form action="#" class="form">
-                <input type="text" class="form__input form__input-card-title" placeholder="Title" name="card-title">
-                <input type="text" class="form__input form__input-card-link" placeholder="Image link"
-                    name="card-link">
-                <button class="form__button">Save</button>
+                <input id="title-input" type="text" class="form__input form__input-card-title" placeholder="Title" name="card-title" required minlength="1" maxlength="30">
+                <span id="title-input-error"></span>
+                <input id="link-input" type="url" class="form__input form__input-card-link" placeholder="Image link" name="card-link" required>
+                <span id="link-input-error"></span>
+                <button class="form__button" >Save</button>
             </form>
         </div>
     </div>

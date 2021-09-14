@@ -33,25 +33,35 @@ function toggleModal(modal) {
   modal.classList.toggle("modal__open");
 }
 
+function openModal(modal) {
+  modal.classList.add("modal__open");
+};
+
+function closeModal(modal) {
+  modal.classList.remove("modal__open");
+};
+
 addCardButton.addEventListener("click", () => {
   addForm.reset();
-  toggleModal(addCardModal);
+  openModal(addCardModal);
 });
 
 addCardModalCloseButton.addEventListener("click", () => {
-  toggleModal(addCardModal);
+  closeModal(addCardModal);
 });
 
 editButton.addEventListener("click", function () {
   editForm.reset();
-  toggleModal(editModal);
+  openModal(editModal);
 });
 
-function closeModal() {
-  toggleModal(editModal);
-}
+// function closeModal() {
+//   toggleModal(editModal);
+// }
 
-editModalCloseButton.addEventListener("click", closeModal);
+editModalCloseButton.addEventListener("click", () => {
+  closeModal(editModal);
+});
 
 editForm.addEventListener("submit", (e) => {
   e.preventDefault();
@@ -61,13 +71,13 @@ editForm.addEventListener("submit", (e) => {
   userName.textContent = nameValue;
   userProfession.textContent = professionValue;
 
-  toggleModal(editModal);
+  closeModal(editModal);
 });
 
 addForm.addEventListener("submit", (e) => {
   e.preventDefault();
   generateCard({ name: inputCardTitle.value, link: inputCardLink.value });
-  toggleModal(addCardModal);
+  closeModal(addCardModal);
 });
 
 const initialCards = [
@@ -109,7 +119,7 @@ function generateCard(cardDate) {
   title.textContent = cardDate.name;
 
   image.addEventListener("click", () => {
-    toggleModal(imageOpen);
+    openModal(imageOpen);
     imageActive.src = cardDate.link;
     titleImageActive.textContent = cardDate.name;
   });
@@ -128,5 +138,93 @@ function generateCard(cardDate) {
 initialCards.forEach(generateCard);
 
 imageOpenCloseButton.addEventListener("click", () => {
-  toggleModal(imageOpen);
+  closeModal(imageOpen);
 });
+
+function toggleButtonState (inputs, button, settings) {
+  const {inactiveButtonClass} = settings;
+  const isFormValid = inputs.every(input =>  {
+   return input.validity.valid})
+  if(isFormValid){
+    button.disabled = false;
+    button.classList.remove(inactiveButtonClass);
+  } else {
+    console.log(button, button.classList);
+    button.classList.add(inactiveButtonClass);
+    button.disabled = 'disabled';
+  }
+}
+
+function showError (input, settings) {
+  const {inputErrorClass, errorClass} = settings;
+  const error = input.validationMessage;
+  const errorElement = document.querySelector(`#${input.id}-error`);
+  console.log(errorElement, input, error);
+  errorElement.textContent = error;
+  errorElement.classList.add(inputErrorClass);
+  input.classList.add(errorClass);
+}
+
+function hideError (input, settings) {
+  const {inputErrorClass, errorClass} = settings;
+  const errorElement = document.querySelector(`#${input.id}-error`);
+  errorElement.textContent = "";
+  errorElement.classList.remove(inputErrorClass);
+  input.classList.remove(errorClass);
+}
+
+function checkValidity (input, settings) {
+  if (input.validity.valid) {
+    hideError (input, settings);
+  } else {
+    showError (input, settings);
+  }
+}
+
+function enableValidation (settings) {
+  const {formSelector, inputSelector, submitButtonSelector, ...rest} = settings;
+  const forms = [...document.querySelectorAll(formSelector)];
+  forms.forEach(form => {
+    form.addEventListener("submit", (e) => { 
+      e.preventDefault();
+    });
+    const inputs = [...form.querySelectorAll(inputSelector)];
+    const button = form.querySelector(submitButtonSelector);
+      inputs.forEach(input => {
+         input.addEventListener("input", () => {
+           checkValidity(input, rest);
+           toggleButtonState (inputs, button, rest)
+         })
+      });
+    console.log(inputs);
+  });
+}
+
+const config = {
+  formSelector: ".modal",
+  inputSelector: ".form__input",
+  submitButtonSelector: ".form__button",
+  inactiveButtonClass: "form__button_disabled",
+  inputErrorClass: "form__input_theme_error",
+  errorClass: "form__input-error"
+}
+
+enableValidation(config); 
+
+function closeImage(){
+  const modals = [...querySelectorAll(".modal")];
+    modals.forEach (modal => document.addEventListener("click", (e) =>{
+      if(modal.classList.contains("modal__open")) {
+        modal.classList.remove("modal__open");
+      }
+    }));
+  };
+  closeImage();
+
+    // function closeImage () {
+//   if (!target === popup) {
+//     closeModal(imageOpen)
+//   }
+// }
+
+// document.addEventListener("click", closeImage);
