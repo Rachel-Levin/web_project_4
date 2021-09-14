@@ -17,7 +17,9 @@ function toggleButtonState (inputs, button, settings) {
 function showError (input, settings) {
     const {inputErrorClass, errorClass} = settings;
     const error = input.validationMessage;
-    const errorElement = document.querySelector(`#${input.id}-error`);
+    // since the closest() method searches up the DOM tree for the closest element
+    // I had to use input.parentElement instead
+    const errorElement = input.parentElement.querySelector('#' + input.id + '-error');
     console.log(errorElement, input, error);
     errorElement.textContent = error;
     errorElement.classList.add(inputErrorClass);
@@ -26,7 +28,9 @@ function showError (input, settings) {
   
   function hideError (input, settings) {
     const {inputErrorClass, errorClass} = settings;
-    const errorElement = document.querySelector(`#${input.id}-error`);
+    // since the closest() method searches up the DOM tree for the closest element
+    // I had to use input.parentElement instead
+    const errorElement = input.parentElement.querySelector('#' + input.id + '-error');
     errorElement.textContent = "";
     errorElement.classList.remove(inputErrorClass);
     input.classList.remove(errorClass);

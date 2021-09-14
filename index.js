@@ -29,9 +29,6 @@ const titleImageActive = imageOpen.querySelector(".modal__title-active");
 const imageOpenCloseButton = imageOpen.querySelector(
   ".modal__card-close-button"
 );
-function toggleModal(modal) {
-  modal.classList.toggle("modal__open");
-}
 
 function openModal(modal) {
   modal.classList.add("modal__open");
@@ -46,7 +43,7 @@ function openModal(modal) {
 function closeModal(modal) {
   modal.classList.remove("modal__open");
   document.removeEventListener("click", closeFormOverlay);
-  document.removeEventListener("keyup", isFormEsc);
+  document.removeEventListener("keyup", closeFormEsc);
 };
 
 function isFormEsc (e, action) {
