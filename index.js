@@ -1,9 +1,28 @@
+import { Card } from './Card.js';
+import { openModal, closeModal } from "./utils.js";
+import { FormValidator } from './FormValidator.js';
+
+
 // const
+const settings = {
+  inputSelector: ".form__input",
+  submitButtonSelector: ".form__button",
+  inactiveButtonClass: "form__button_disabled",
+  inputErrorClass: "form__input_theme_error",
+  errorClass: "form__input-error"
+}
+
+const addCard = document.querySelector(".modal-add-card");
+const editModal = document.querySelector(".modal-edit");
+const addCardFormValidator = new FormValidator(settings, addCard);
+const editModalFormValidator = new FormValidator(settings, editModal);
+
+addCardFormValidator.enableValidation();
+editModalFormValidator.enableValidation();
+
 const userName = document.querySelector(".profile__name");
 const userProfession = document.querySelector(".profile__job");
-// const cardTitle = document.querySelector('.')
 //modals
-const editModal = document.querySelector(".modal-edit");
 const addCardModal = document.querySelector(".modal-add-card");
 //closeButtons
 const editModalCloseButton = editModal.querySelector(".modal__close-button");
@@ -21,52 +40,6 @@ const inputCardLink = addCardModal.querySelector(".form__input-card-link");
 //forms
 const editForm = editModal.querySelector(".form");
 const addForm = addCardModal.querySelector(".form");
-//images
-const itemTemplate = document.querySelector("#gallery").content;
-const imageOpen = document.querySelector(".modal-full-screen");
-const imageActive = imageOpen.querySelector(".modal__image-active");
-const titleImageActive = imageOpen.querySelector(".modal__title-active");
-const imageOpenCloseButton = imageOpen.querySelector(
-  ".modal__card-close-button"
-);
-
-function openModal(modal) {
-  modal.classList.add("modal__open");
-  document.addEventListener("click", closeFormOverlay);
-  document.addEventListener("keyup", closeFormEsc);
-  const inputs = [...modal.querySelectorAll(config.inputSelector)];
-  inputs.forEach(input => {
-      hideError(input, config);
-  });
-};
-
-function closeModal(modal) {
-  modal.classList.remove("modal__open");
-  document.removeEventListener("click", closeFormOverlay);
-  document.removeEventListener("keyup", closeFormEsc);
-};
-
-function isFormEsc (e, action) {
-  const activeModal = document.querySelector(".modal__open");
-  if (e.key === 'Escape') {
-    action(activeModal);
-  }
-};
-
-function closeFormEsc (e) {
-  isFormEsc(e, closeModal);
-};
-
-function isOverlayClicked (e, action) {
-  const activeModal = document.querySelector(".modal__open");
-  if (e.target === activeModal) {
-    action(activeModal);
-  }; 
-};
-
-function closeFormOverlay (e) {
-  isOverlayClicked(e, closeModal)
-}
 
 addCardButton.addEventListener("click", () => {
   addForm.reset();
@@ -82,9 +55,6 @@ editButton.addEventListener("click", function () {
   openModal(editModal);
 });
 
-// function closeModal() {
-//   toggleModal(editModal);
-// }
 
 editModalCloseButton.addEventListener("click", () => {
   closeModal(editModal);
@@ -103,8 +73,10 @@ editForm.addEventListener("submit", (e) => {
 
 addForm.addEventListener("submit", (e) => {
   e.preventDefault();
-  generateCard({ name: inputCardTitle.value, link: inputCardLink.value });
+  const card = new Card(inputCardTitle.value, inputCardLink.value, templateCardSelector);
+  const cardContent = card.generateCard();
   closeModal(addCardModal);
+  gallery.prepend(cardContent);
 });
 
 const initialCards = [
@@ -133,38 +105,15 @@ const initialCards = [
     link: "https://code.s3.yandex.net/web-code/lago.jpg",
   },
 ];
-
-function generateCard(cardDate) {
-  const itemElement = itemTemplate.querySelector(".gallery").cloneNode(true);
-  const gallery = document.querySelector(".cards");
-  const deleteCard = itemElement.querySelector(".gallery__delete");
-  const likeCard = itemElement.querySelector(".gallery__like");
-  const image = itemElement.querySelector(".gallery__image");
-  const title = itemElement.querySelector(".gallery__title");
-
-  image.src = cardDate.link;
-  title.textContent = cardDate.name;
-
-  image.addEventListener("click", () => {
-    openModal(imageOpen);
-    imageActive.src = cardDate.link;
-    titleImageActive.textContent = cardDate.name;
-  });
-
-  likeCard.addEventListener("click", () => {
-    likeCard.classList.toggle("gallery__like-active");
-  });
-
-  deleteCard.addEventListener("click", () => {
-    itemElement.remove();
-  });
-
-  gallery.prepend(itemElement);
+const templateCardSelector = "#gallery";
+const gallery = document.querySelector(".cards");
+const renderCard = (data, wrap) => {
+  const itemElement = new Card(data['name'], data['link'], templateCardSelector);
+  wrap.prepend(itemElement.generateCard());
 }
 
-initialCards.forEach(generateCard);
-
-imageOpenCloseButton.addEventListener("click", () => {
-  closeModal(imageOpen);
+initialCards.forEach((data) => {
+  renderCard(data, gallery);
 });
+
 
