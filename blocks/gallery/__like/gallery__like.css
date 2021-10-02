@@ -7,20 +7,9 @@
   border: none;
   background-color: white;
   cursor: pointer;
-} 
-
-/* @media screen and (max-width: 760px) {
-  .gallery {
-      grid-template-columns: repeat(2, 1fr);
-      grid-template-rows: repeat(3, auto);
-      margin-top: 42px;
-  }
 }
- 
-@media screen and (max-width: 540px) {
-  .gallery {
-      grid-template-columns: repeat(1, 1fr);
-      grid-template-rows: repeat(6, auto);
-      margin-top: 36px;
-  }
-}  */
+
+.gallery__like:hover {
+  opacity: .3;
+  transition: .5s;
+}

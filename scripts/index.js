@@ -43,6 +43,7 @@ const addForm = addCardModal.querySelector(".form");
 
 addCardButton.addEventListener("click", () => {
   addForm.reset();
+  addCardFormValidator.resetValidation();
   openModal(addCardModal);
 });
 
@@ -52,6 +53,9 @@ addCardModalCloseButton.addEventListener("click", () => {
 
 editButton.addEventListener("click", function () {
   editForm.reset();
+  editModalFormValidator.resetValidation();
+  inputName.value = userName.textContent;
+  inputProfession.value = userProfession.textContent;
   openModal(editModal);
 });
 
@@ -107,9 +111,9 @@ const initialCards = [
 ];
 const templateCardSelector = "#gallery";
 const gallery = document.querySelector(".cards");
-const renderCard = (data, wrap) => {
+const renderCard = (data, gallery) => {
   const itemElement = new Card(data['name'], data['link'], templateCardSelector);
-  wrap.prepend(itemElement.generateCard());
+  gallery.prepend(itemElement.generateCard());
 }
 
 initialCards.forEach((data) => {
