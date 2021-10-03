@@ -14,8 +14,9 @@ export class Card {
     evt.target.classList.toggle("gallery__like-active");
   };
 
-  _handleDeleteCard() {
-    this.closest(".gallery").remove();
+  _handleDeleteCard(evt) {
+    evt.target.closest(".gallery").remove();
+    //this._element is not accessible here, because it's a context of a clickListener
   }
 
   _handlePreviewPicture = () => {
