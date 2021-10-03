@@ -11,6 +11,6 @@
   cursor: pointer;
 }
 
-.form__button:hover {
+.form__button:hover:enabled {
 opacity: .8;
 }

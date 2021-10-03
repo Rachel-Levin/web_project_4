@@ -14,9 +14,8 @@ export class Card {
     evt.target.classList.toggle("gallery__like-active");
   };
 
-  _handleDeleteCard = () => {
-    this._element.remove();
-    this._element = null;
+  _handleDeleteCard() {
+    this.closest(".gallery").remove();
   }
 
   _handlePreviewPicture = () => {
