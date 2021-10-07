@@ -1,11 +1,11 @@
-import { openModal, openedImage } from "./utils.js";
-export const imageActive = openedImage.querySelector(".modal__image-active");
-export const titleImageActive = openedImage.querySelector(".modal__title-active");
+// import { openedImage } from "./utils.js";
+
 
 export class Card {
-  constructor(name, link, templateCardSelector) {
+  constructor(name, link, templateCardSelector, handleCardClick) {
     this._name = name;
     this._link = link;
+    this._handleCardClick = handleCardClick;
 
     this._itemTemplate = document.querySelector(templateCardSelector);
   }
@@ -14,17 +14,10 @@ export class Card {
     evt.target.classList.toggle("gallery__like-active");
   };
 
-  _handleDeleteCard(evt) {
+  _handleDeleteCard = (evt) => {
     evt.target.closest(".gallery").remove();
     //this._element is not accessible here, because it's a context of a clickListener
   }
-
-  _handlePreviewPicture = () => {
-    openModal(openedImage);
-    imageActive.src = this._link;
-    titleImageActive.textContent = this._name;
-    imageActive.alt = `Photo of ${this._name}`;
-  };
 
   _addEventListeners() {
     const deleteCard = this._element.querySelector(".gallery__delete");
@@ -33,7 +26,7 @@ export class Card {
 
     likeCard.addEventListener("click", this._handleLikeIcon);
     deleteCard.addEventListener("click", this._handleDeleteCard);
-    image.addEventListener("click", this._handlePreviewPicture);
+    image.addEventListener("click", this._handleCardClick);
   }
 
   generateCard = () => {

@@ -1,6 +1,11 @@
 import { Card } from './Card.js';
-import { openModal, closeModal } from "./utils.js";
+// import { openedImage } from "./utils.js";
 import { FormValidator } from './FormValidator.js';
+import { PopupWithImage } from './PopupWithImage.js';
+import { PopupWithForm } from './PopupWithForm.js';
+import { Popup } from './Popup.js';
+import Section from './Section.js';
+import { UserInfo } from './UserInfo.js';
 
 
 // const
@@ -22,6 +27,9 @@ editModalFormValidator.enableValidation();
 
 const userName = document.querySelector(".profile__name");
 const userProfession = document.querySelector(".profile__job");
+const openedImage = document.querySelector(".modal-full-screen");
+const imageActive = openedImage.querySelector(".modal__image-active");
+const titleImageActive = openedImage.querySelector(".modal__title-active");
 //modals
 const addCardModal = document.querySelector(".modal-add-card");
 //closeButtons
@@ -41,14 +49,23 @@ const inputCardLink = addCardModal.querySelector(".form__input-card-link");
 const editForm = editModal.querySelector(".form");
 const addForm = addCardModal.querySelector(".form");
 
+const imageModal = new PopupWithImage(".modal-full-screen");
+imageModal.setEventListeners();
+
+const addCardForm = new PopupWithForm(".modal-add-card");
+addCardForm.setEventListeners();
+
+const editProfileForm = new PopupWithForm(".modal-edit");
+editProfileForm.setEventListeners();
+
 addCardButton.addEventListener("click", () => {
   addForm.reset();
   addCardFormValidator.resetValidation();
-  openModal(addCardModal);
+  addCardForm.openModal(addCardModal);
 });
 
 addCardModalCloseButton.addEventListener("click", () => {
-  closeModal(addCardModal);
+  addCardForm.closeModal(addCardModal);
 });
 
 editButton.addEventListener("click", function () {
@@ -56,12 +73,12 @@ editButton.addEventListener("click", function () {
   editModalFormValidator.resetValidation();
   inputName.value = userName.textContent;
   inputProfession.value = userProfession.textContent;
-  openModal(editModal);
+  editProfileForm.openModal(editModal);
 });
 
 
 editModalCloseButton.addEventListener("click", () => {
-  closeModal(editModal);
+  editProfileForm.closeModal(editModal);
 });
 
 editForm.addEventListener("submit", (e) => {
@@ -72,14 +89,21 @@ editForm.addEventListener("submit", (e) => {
   userName.textContent = nameValue;
   userProfession.textContent = professionValue;
 
-  closeModal(editModal);
+  editProfileForm.closeModal(editModal);
 });
 
 addForm.addEventListener("submit", (e) => {
   e.preventDefault();
-  const card = new Card(inputCardTitle.value, inputCardLink.value, templateCardSelector);
+  const card = new Card(inputCardTitle.value, inputCardLink.value, templateCardSelector, 
+    () => {
+        handleCardClick({ 
+        name: inputCardTitle.value,
+        link: inputCardLink.value,
+      })
+    }
+    );
   const cardContent = card.generateCard();
-  closeModal(addCardModal);
+  addCardForm.closeModal(addCardModal);
   gallery.prepend(cardContent);
 });
 
@@ -109,15 +133,28 @@ const initialCards = [
     link: "https://code.s3.yandex.net/web-code/lago.jpg",
   },
 ];
+
+const handleCardClick = (data) => {
+  imageModal.openModal(openedImage);
+  imageActive.src = data.link;
+  titleImageActive.textContent = data.name;
+  imageActive.alt = `Photo of ${data.name}`;
+};
+
 const templateCardSelector = "#gallery";
 const gallery = document.querySelector(".cards");
 const renderCard = (data, gallery) => {
-  const itemElement = new Card(data['name'], data['link'], templateCardSelector);
+  const itemElement = new Card(data['name'], data['link'], templateCardSelector, 
+    () => {
+      handleCardClick(data)
+    }
+      );
   gallery.prepend(itemElement.generateCard());
 }
 
 initialCards.forEach((data) => {
   renderCard(data, gallery);
 });
+
 
 

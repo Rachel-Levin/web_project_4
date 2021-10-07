@@ -1,0 +1,32 @@
+{
+  "name": "web_project_4",
+  "version": "1.0.0",
+  "description": "This is a project of cite where you can add photos\r technologies:\r **BEM**\r **Grid**\r **Flex**\r **JS**",
+  "main": "index.js",
+  "scripts": {
+    "build": "rm -rf dist && webpack --mode production",
+    "dev": "webpack serve --mode development"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Rachel-Levin/web_project_4.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Rachel-Levin/web_project_4/issues"
+  },
+  "homepage": "https://github.com/Rachel-Levin/web_project_4#readme",
+  "dependencies": {
+    "core-js": "^3.18.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.15.8",
+    "@babel/preset-env": "^7.15.8",
+    "babel-loader": "^8.2.2",
+    "webpack": "^5.57.1",
+    "webpack-cli": "^4.9.0",
+    "webpack-dev-server": "^4.3.1"
+  }
+}
