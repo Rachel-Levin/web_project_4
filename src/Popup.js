@@ -5,11 +5,9 @@ export class Popup {
     }
 
     openModal() {
-        const closeButton = document.querySelector(".modal__close-button");
         this._modal.classList.add("modal__open");
         document.addEventListener("click", this._handleOverlayClick);
         document.addEventListener("keyup", this._handleEsc);
-        closeButton.addEventListener("click", this.closeModal);
     }
 
     closeModal = () => {
@@ -19,7 +17,6 @@ export class Popup {
     };
 
     _handleEsc = (e) => {
-        // const activeModal = document.querySelector(".modal__open");
         if (e.key === 'Escape') {
             this.closeModal();
         }
@@ -27,19 +24,12 @@ export class Popup {
 
     _handleOverlayClick = (e) => {
         const activeModal = document.querySelector(".modal__open");
-        if (e.target === activeModal) {
+        if (e.target.classList.contains('modal__open')) {
             this.closeModal();
-        };
+          };
     };
 
     setEventListeners() {
         this._modal.querySelector(".modal__close-button").addEventListener("click", this.closeModal);
-        // const openedImageCloseButton = openedImage.querySelector(
-        //     ".modal__card-close-button");
-        // const openedImage = document.querySelector(".modal-full-screen");
-
-        // openedImageCloseButton.addEventListener("click", () => {
-        //     closeModal(openedImage);
-        // });
     };
 }

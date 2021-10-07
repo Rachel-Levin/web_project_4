@@ -1,9 +1,10 @@
+import "./pages/index.css";
+
 import { Card } from './Card.js';
 // import { openedImage } from "./utils.js";
 import { FormValidator } from './FormValidator.js';
 import { PopupWithImage } from './PopupWithImage.js';
 import { PopupWithForm } from './PopupWithForm.js';
-import { Popup } from './Popup.js';
 import Section from './Section.js';
 import { UserInfo } from './UserInfo.js';
 
@@ -24,8 +25,6 @@ const editModalFormValidator = new FormValidator(settings, editModal);
 addCardFormValidator.enableValidation();
 editModalFormValidator.enableValidation();
 
-const userName = document.querySelector(".profile__name");
-const userProfession = document.querySelector(".profile__job");
 const openedImage = document.querySelector(".modal-full-screen");
 const imageActive = openedImage.querySelector(".modal__image-active");
 const titleImageActive = openedImage.querySelector(".modal__title-active");
@@ -51,10 +50,30 @@ const addForm = addCardModal.querySelector(".form");
 const imageModal = new PopupWithImage(".modal-full-screen");
 imageModal.setEventListeners();
 
-const addCardForm = new PopupWithForm(".modal-add-card");
+const addCardForm = new PopupWithForm(".modal-add-card",
+  () => {
+    const card = new Card(inputCardTitle.value, inputCardLink.value, templateCardSelector,
+      () => {
+        handleCardClick({
+          name: inputCardTitle.value,
+          link: inputCardLink.value,
+        })
+      }
+    );
+    const cardContent = card.generateCard();
+    addCardForm.closeModal();
+    cardsSection.addItem(cardContent);
+  }
+);
 addCardForm.setEventListeners();
 
-const editProfileForm = new PopupWithForm(".modal-edit");
+const editProfileForm = new PopupWithForm(".modal-edit",
+  () => {
+    userProfile.setUserInfo(inputName.value, inputProfession.value);
+
+    editProfileForm.closeModal();
+  }
+);
 editProfileForm.setEventListeners();
 
 const userProfile = new UserInfo(".profile__name", ".profile__job");
@@ -62,11 +81,11 @@ const userProfile = new UserInfo(".profile__name", ".profile__job");
 addCardButton.addEventListener("click", () => {
   addForm.reset();
   addCardFormValidator.resetValidation();
-  addCardForm.openModal(addCardModal);
+  addCardForm.openModal();
 });
 
 addCardModalCloseButton.addEventListener("click", () => {
-  addCardForm.closeModal(addCardModal);
+  addCardForm.closeModal();
 });
 
 editButton.addEventListener("click", function () {
@@ -75,43 +94,14 @@ editButton.addEventListener("click", function () {
   let userProfileData = userProfile.getUserInfo();
   inputName.value = userProfileData.name;
   inputProfession.value = userProfileData.job;
-  editProfileForm.openModal(editModal);
+  editProfileForm.openModal();
 });
 
 
 editModalCloseButton.addEventListener("click", () => {
-  editProfileForm.closeModal(editModal);
+  editProfileForm.closeModal();
 });
 
-editForm.addEventListener("submit", (e) => {
-  e.preventDefault();
-  // const nameValue = inputName.value;
-  // const professionValue = inputProfession.value;
-
-  // userName.textContent = nameValue;
-  // userProfession.textContent = professionValue;
-
-
-  userProfile.setUserInfo(inputName.value, inputProfession.value);
-
-  editProfileForm.closeModal(editModal);
-});
-
-addForm.addEventListener("submit", (e) => {
-  e.preventDefault();
-  const card = new Card(inputCardTitle.value, inputCardLink.value, templateCardSelector,
-    () => {
-      handleCardClick({
-        name: inputCardTitle.value,
-        link: inputCardLink.value,
-      })
-    }
-  );
-  const cardContent = card.generateCard();
-  addCardForm.closeModal(addCardModal);
-  // gallery.prepend(cardContent);
-  cardsSection.addItem(cardContent);
-});
 
 const initialCards = [
   {
@@ -141,27 +131,13 @@ const initialCards = [
 ];
 
 const handleCardClick = (data) => {
-  imageModal.openModal(openedImage);
+  imageModal.openModal();
   imageActive.src = data.link;
   titleImageActive.textContent = data.name;
   imageActive.alt = `Photo of ${data.name}`;
 };
 
 const templateCardSelector = "#gallery";
-// const gallery = document.querySelector(".cards");
-// const renderCard = (data, gallery) => {
-//   const itemElement = new Card(data['name'], data['link'], templateCardSelector,
-//     () => {
-//       handleCardClick(data)
-//     }
-//   );
-//   gallery.prepend(itemElement.generateCard());
-// }
-
-// initialCards.forEach((data) => {
-//   renderCard(data, gallery);
-// });
-
 
 const cardsSection = new Section({
   items: initialCards,
@@ -175,7 +151,6 @@ const cardsSection = new Section({
     cardsSection.addItem(itemElement);
   },
 }, ".cards");
-// initialCards.addItem(itemElement);
 
 cardsSection.rendererItems();
 

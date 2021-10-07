@@ -5,20 +5,19 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./pages/index.css">
     <title>Around The U.S.</title>
 </head>
 
 <body class="page">
     <div class="page__container">
         <header class="header">
-            <img src="./images/logo.svg" alt="text: around the US" class="header__logo">
+            <img src="<%= require('./images/logo.svg')%>" alt="text: around the US" class="header__logo">
             <!-- <hr class="header__line"> -->
         </header>
         <main>
             <div class="profile">
                 <div class="profile__card">
-                    <img src="./images/avatar.jpg" alt="artist avatar" class="profile__avatar">
+                    <img src="<%= require('./images/avatar.jpg')%>" alt="artist avatar" class="profile__avatar">
                     <div class="profile__input">
                         <div class="profile__row">
                             <h1 class="profile__name">Jacques Cousteau</h1>
@@ -70,7 +69,7 @@
         <div class="modal__card-container">
             <button class="modal__card-close-button modal__close-button"></button>
             <figure class="modal__item-active">
-                <img src="#" alt="*" class="modal__image-active">
+                <img src="<%= require('./images/avatar.jpg')%>" alt="*" class="modal__image-active">
                 <figcaption class="modal__title-active"></figcaption>
             </figure>
         </div>
@@ -79,7 +78,7 @@
     <template id="gallery">
         <li class="gallery">
             <button class="gallery__delete"></button>
-            <img src="#" alt="*" class="gallery__image">
+            <img src="<%= require('./images/avatar.jpg')%>" alt="*" alt="*" class="gallery__image">
             <div class="gallery__description">
                 <p class="gallery__title"></p>
                 <button class="gallery__like"></button>
@@ -87,7 +86,6 @@
         </li>
     </template>
 
-    <script type="module" src="./index.js" defer></script>
 </body>
 
 </html>
