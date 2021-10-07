@@ -6,7 +6,10 @@ export class FormValidator {
     }
 
     _showError(input) {
-        const { inputErrorClass, errorClass } = this.settings;
+        const {
+            inputErrorClass,
+            errorClass
+        } = this.settings;
         const error = input.validationMessage;
         // since the closest() method searches up the DOM tree for the closest element
         // I had to use input.parentElement instead
@@ -17,7 +20,10 @@ export class FormValidator {
     }
 
     _hideError(input) {
-        const { inputErrorClass, errorClass } = this.settings;
+        const {
+            inputErrorClass,
+            errorClass
+        } = this.settings;
         // since the closest() method searches up the DOM tree for the closest element
         // I had to use input.parentElement instead
         const errorElement = this.formElement.querySelector('#' + input.id + '-error');
@@ -35,7 +41,7 @@ export class FormValidator {
     }
 
     _setEventListeners() {
-        
+
         this.inputs.forEach(input => {
             input.addEventListener("input", () => {
                 this._checkValidity(input);
@@ -45,7 +51,9 @@ export class FormValidator {
     }
 
     _toggleButtonState() {
-        const { inactiveButtonClass } = this.settings;
+        const {
+            inactiveButtonClass
+        } = this.settings;
         const button = this.formElement.querySelector(this.settings.submitButtonSelector);
         const isFormValid = this.inputs.every(input => {
             return input.validity.valid
@@ -70,6 +78,5 @@ export class FormValidator {
         this._toggleButtonState();
     }
 }
-
 
 

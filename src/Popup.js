@@ -26,7 +26,7 @@ export class Popup {
         const activeModal = document.querySelector(".modal__open");
         if (e.target.classList.contains('modal__open')) {
             this.closeModal();
-          };
+        };
     };
 
     setEventListeners() {
