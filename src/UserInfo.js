@@ -11,8 +11,8 @@ export class UserInfo {
         };
     }
 
-    setUserInfo(name, job) {
+    setUserInfo({name, profession}) {
         this._profileName.textContent = name;
-        this._profileJob.textContent = job;
+        this._profileJob.textContent = profession;
     }
 }

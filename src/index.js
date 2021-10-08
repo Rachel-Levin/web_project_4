@@ -1,30 +1,30 @@
 import "./pages/index.css";
 
 import {
-    Card
+  Card
 } from './Card.js';
 // import { openedImage } from "./utils.js";
 import {
-    FormValidator
+  FormValidator
 } from './FormValidator.js';
 import {
-    PopupWithImage
+  PopupWithImage
 } from './PopupWithImage.js';
 import {
-    PopupWithForm
+  PopupWithForm
 } from './PopupWithForm.js';
 import Section from './Section.js';
 import {
-    UserInfo
+  UserInfo
 } from './UserInfo.js';
 
 // const
 const settings = {
-    inputSelector: ".form__input",
-    submitButtonSelector: ".form__button",
-    inactiveButtonClass: "form__button_disabled",
-    inputErrorClass: "form__input_theme_error",
-    errorClass: "form__input-error"
+  inputSelector: ".form__input",
+  submitButtonSelector: ".form__button",
+  inactiveButtonClass: "form__button_disabled",
+  inputErrorClass: "form__input_theme_error",
+  errorClass: "form__input-error"
 }
 
 const addCard = document.querySelector(".modal-add-card");
@@ -43,7 +43,7 @@ const addCardModal = document.querySelector(".modal-add-card");
 //closeButtons
 const editModalCloseButton = editModal.querySelector(".modal__close-button");
 const addCardModalCloseButton = addCardModal.querySelector(
-    ".modal__close-button"
+  ".modal__close-button"
 );
 //buttons
 const editButton = document.querySelector(".profile__edit");
@@ -59,106 +59,107 @@ const addForm = addCardModal.querySelector(".form");
 
 const imageModal = new PopupWithImage(".modal-full-screen");
 imageModal.setEventListeners();
+const templateCardSelector = "#gallery";
+
+function createCard(data) {
+  const currentCard = new Card(data['name'], data['link'], templateCardSelector,
+    () => {
+      handleCardClick(data)
+    }
+  );
+  const itemElement = currentCard.generateCard();
+  console.log(itemElement);
+  return itemElement;
+}
+
 
 const addCardForm = new PopupWithForm(".modal-add-card",
-    () => {
-        const card = new Card(inputCardTitle.value, inputCardLink.value, templateCardSelector,
-            () => {
-                handleCardClick({
-                    name: inputCardTitle.value,
-                    link: inputCardLink.value,
-                })
-            }
-        );
-        const cardContent = card.generateCard();
-        addCardForm.closeModal();
-        cardsSection.addItem(cardContent);
-    }
+  () => {
+    const cardContent = createCard({
+      name: inputCardTitle.value,
+      link: inputCardLink.value,
+    });
+    cardsSection.addItem(cardContent);
+    addCardForm.closeModal();
+  }
 );
 addCardForm.setEventListeners();
 
 const editProfileForm = new PopupWithForm(".modal-edit",
-    () => {
-        userProfile.setUserInfo(inputName.value, inputProfession.value);
-
-        editProfileForm.closeModal();
-    }
+  (inputValues) => {
+    userProfile.setUserInfo(inputValues);
+    editProfileForm.closeModal();
+  }
 );
 editProfileForm.setEventListeners();
 
 const userProfile = new UserInfo(".profile__name", ".profile__job");
 
 addCardButton.addEventListener("click", () => {
-    addForm.reset();
-    addCardFormValidator.resetValidation();
-    addCardForm.openModal();
+  addForm.reset();
+  addCardFormValidator.resetValidation();
+  addCardForm.openModal();
 });
 
 addCardModalCloseButton.addEventListener("click", () => {
-    addCardForm.closeModal();
+  addCardForm.closeModal();
 });
 
-editButton.addEventListener("click", function() {
-    editForm.reset();
-    editModalFormValidator.resetValidation();
-    let userProfileData = userProfile.getUserInfo();
-    inputName.value = userProfileData.name;
-    inputProfession.value = userProfileData.job;
-    editProfileForm.openModal();
+editButton.addEventListener("click", function () {
+  editForm.reset();
+  editModalFormValidator.resetValidation();
+  let userProfileData = userProfile.getUserInfo();
+  inputName.value = userProfileData.name;
+  inputProfession.value = userProfileData.job;
+  editProfileForm.openModal();
 });
 
 
 editModalCloseButton.addEventListener("click", () => {
-    editProfileForm.closeModal();
+  editProfileForm.closeModal();
 });
 
 
 const initialCards = [{
-        name: "Yosemite Valley",
-        link: "https://code.s3.yandex.net/web-code/yosemite.jpg",
-    },
-    {
-        name: "Lake Louise",
-        link: "https://code.s3.yandex.net/web-code/lake-louise.jpg",
-    },
-    {
-        name: "Bald Mountains",
-        link: "https://code.s3.yandex.net/web-code/bald-mountains.jpg",
-    },
-    {
-        name: "Latemar",
-        link: "https://code.s3.yandex.net/web-code/latemar.jpg",
-    },
-    {
-        name: "Vanoise National Park",
-        link: "https://code.s3.yandex.net/web-code/vanoise.jpg",
-    },
-    {
-        name: "Lago di Braies",
-        link: "https://code.s3.yandex.net/web-code/lago.jpg",
-    },
+  name: "Yosemite Valley",
+  link: "https://code.s3.yandex.net/web-code/yosemite.jpg",
+},
+{
+  name: "Lake Louise",
+  link: "https://code.s3.yandex.net/web-code/lake-louise.jpg",
+},
+{
+  name: "Bald Mountains",
+  link: "https://code.s3.yandex.net/web-code/bald-mountains.jpg",
+},
+{
+  name: "Latemar",
+  link: "https://code.s3.yandex.net/web-code/latemar.jpg",
+},
+{
+  name: "Vanoise National Park",
+  link: "https://code.s3.yandex.net/web-code/vanoise.jpg",
+},
+{
+  name: "Lago di Braies",
+  link: "https://code.s3.yandex.net/web-code/lago.jpg",
+},
 ];
 
 const handleCardClick = (data) => {
-    imageModal.openModal();
-    imageActive.src = data.link;
-    titleImageActive.textContent = data.name;
-    imageActive.alt = `Photo of ${data.name}`;
+  imageModal.openModal();
+  imageActive.src = data.link;
+  titleImageActive.textContent = data.name;
+  imageActive.alt = `Photo of ${data.name}`;
 };
 
-const templateCardSelector = "#gallery";
 
 const cardsSection = new Section({
-    items: initialCards,
-    renderer: (data) => {
-        const currentCard = new Card(data['name'], data['link'], templateCardSelector,
-            () => {
-                handleCardClick(data)
-            }
-        );
-        const itemElement = currentCard.generateCard();
-        cardsSection.addItem(itemElement);
-    },
+  items: initialCards,
+  renderer: (data) => {
+    const card = createCard(data);
+    cardsSection.addItem(card);
+  },
 }, ".cards");
 
 cardsSection.rendererItems();
