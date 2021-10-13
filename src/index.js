@@ -74,10 +74,10 @@ function createCard(data) {
 
 
 const addCardForm = new PopupWithForm(".modal-add-card",
-  () => {
+  (inputValues) => {
     const cardContent = createCard({
-      name: inputCardTitle.value,
-      link: inputCardLink.value,
+      name: inputValues['card-title'],
+      link: inputValues['card-link'],
     });
     cardsSection.addItem(cardContent);
     addCardForm.closeModal();
@@ -164,5 +164,11 @@ const cardsSection = new Section({
 
 cardsSection.rendererItems();
 
-
-
+function loadImage(imageUrl) {
+  return new Promise((resolve, reject) => {
+  const image = document.createElement("img");
+  image.src = imageUrl;
+  image.onerror = reject;
+  image.onload = resolve;
+  });
+}
