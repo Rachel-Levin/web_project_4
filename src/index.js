@@ -17,6 +17,7 @@ import Section from './Section.js';
 import {
   UserInfo
 } from './UserInfo.js';
+// import { api, Api } from './Api.js'
 
 // const
 const settings = {
@@ -172,3 +173,8 @@ function loadImage(imageUrl) {
   image.onload = resolve;
   });
 }
+
+// api.getInitialCards() 
+//   .then(res => {
+//     console.log('res', res)
+//   })
