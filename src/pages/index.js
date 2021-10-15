@@ -1,22 +1,26 @@
-import "./pages/index.css";
+import "./index.css";
 
 import {
   Card
-} from './Card.js';
+} from '../components/Card.js';
 // import { openedImage } from "./utils.js";
 import {
   FormValidator
-} from './FormValidator.js';
+} from '../components/FormValidator.js';
 import {
   PopupWithImage
-} from './PopupWithImage.js';
+} from '../components/PopupWithImage.js';
 import {
   PopupWithForm
-} from './PopupWithForm.js';
-import Section from './Section.js';
+} from '../components/PopupWithForm.js';
+import Section from '../components/Section.js';
 import {
   UserInfo
-} from './UserInfo.js';
+} from '../components/UserInfo.js';
+
+// import * as constant from '../components/constant.js';
+
+
 
 // const
 const settings = {
@@ -38,25 +42,13 @@ editModalFormValidator.enableValidation();
 const openedImage = document.querySelector(".modal-full-screen");
 const imageActive = openedImage.querySelector(".modal__image-active");
 const titleImageActive = openedImage.querySelector(".modal__title-active");
-//modals
-const addCardModal = document.querySelector(".modal-add-card");
-//closeButtons
-const editModalCloseButton = editModal.querySelector(".modal__close-button");
-const addCardModalCloseButton = addCardModal.querySelector(
-  ".modal__close-button"
-);
 //buttons
 const editButton = document.querySelector(".profile__edit");
 const addCardButton = document.querySelector(".profile__add");
 //inputs
 const inputName = editModal.querySelector(".form__input-name");
 const inputProfession = editModal.querySelector(".form__input-profession");
-const inputCardTitle = addCardModal.querySelector(".form__input-card-title");
-const inputCardLink = addCardModal.querySelector(".form__input-card-link");
 //forms
-const editForm = editModal.querySelector(".form");
-const addForm = addCardModal.querySelector(".form");
-
 const imageModal = new PopupWithImage(".modal-full-screen");
 imageModal.setEventListeners();
 const templateCardSelector = "#gallery";
@@ -96,29 +88,17 @@ editProfileForm.setEventListeners();
 const userProfile = new UserInfo(".profile__name", ".profile__job");
 
 addCardButton.addEventListener("click", () => {
-  addForm.reset();
   addCardFormValidator.resetValidation();
   addCardForm.openModal();
 });
 
-addCardModalCloseButton.addEventListener("click", () => {
-  addCardForm.closeModal();
-});
-
 editButton.addEventListener("click", function () {
-  editForm.reset();
   editModalFormValidator.resetValidation();
-  let userProfileData = userProfile.getUserInfo();
+  const userProfileData = userProfile.getUserInfo();
   inputName.value = userProfileData.name;
   inputProfession.value = userProfileData.job;
   editProfileForm.openModal();
 });
-
-
-editModalCloseButton.addEventListener("click", () => {
-  editProfileForm.closeModal();
-});
-
 
 const initialCards = [{
   name: "Yosemite Valley",

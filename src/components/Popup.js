@@ -10,7 +10,7 @@ export class Popup {
         document.addEventListener("keyup", this._handleEsc);
     }
 
-    closeModal = () => {
+    closeModal() {
         this._modal.classList.remove("modal__open");
         document.removeEventListener("click", this._handleOverlayClick);
         document.removeEventListener("keyup", this._handleEsc);
@@ -23,13 +23,14 @@ export class Popup {
     };
 
     _handleOverlayClick = (e) => {
-        const activeModal = document.querySelector(".modal__open");
         if (e.target.classList.contains('modal__open')) {
             this.closeModal();
         };
     };
 
     setEventListeners() {
-        this._modal.querySelector(".modal__close-button").addEventListener("click", this.closeModal);
+        this._modal.querySelector(".modal__close-button").addEventListener("click",() => {
+            this.closeModal()
+        });
     };
 }

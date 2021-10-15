@@ -6,14 +6,15 @@ export class PopupWithForm extends Popup {
     constructor(popupSelector, submitHandler) {
         super(popupSelector)
         this._submitHandler = submitHandler;
+        this._inputs = [...this._modal.querySelectorAll(".form__input")];
+        this._form = this._modal.querySelector(".form");
     }
 
     _getInputValues() {
-        const inputs = [...this._modal.querySelectorAll(".form__input")];
         const inputValues = {};
 
 
-        inputs.forEach((input) => {
+        this._inputs.forEach((input) => {
             inputValues[input.name] = input.value;
         })
         return inputValues;
@@ -29,6 +30,6 @@ export class PopupWithForm extends Popup {
 
     closeModal() {
         super.closeModal();
-        this._modal.reset();
+        this._form.reset();
     }
 }
