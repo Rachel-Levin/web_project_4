@@ -1,5 +1,4 @@
 // const
-
 const settings = {
     inputSelector: ".form__input",
     submitButtonSelector: ".form__button",
@@ -10,8 +9,6 @@ const settings = {
 
 const addCard = document.querySelector(".modal-add-card");
 const editModal = document.querySelector(".modal-edit");
-const addCardFormValidator = new FormValidator(settings, addCard);
-const editModalFormValidator = new FormValidator(settings, editModal);
 const openedImage = document.querySelector(".modal-full-screen");
 const imageActive = openedImage.querySelector(".modal__image-active");
 const titleImageActive = openedImage.querySelector(".modal__title-active");
@@ -29,7 +26,6 @@ const addCardButton = document.querySelector(".profile__add");
 const inputName = editModal.querySelector(".form__input-name");
 const inputProfession = editModal.querySelector(".form__input-profession");
 //forms
-const imageModal = new PopupWithImage(".modal-full-screen");
 const templateCardSelector = "#gallery";
 const initialCards = [{
     name: "Yosemite Valley",
@@ -56,13 +52,10 @@ const initialCards = [{
     link: "https://code.s3.yandex.net/web-code/lago.jpg",
 },
 ];
-const imageActive = openedImage.querySelector(".modal__image-active");
 export { 
     settings, 
     addCard, 
     editModal, 
-    addCardFormValidator, 
-    editModalFormValidator, 
     openedImage, 
     imageActive, 
     titleImageActive,
@@ -73,7 +66,6 @@ export {
     addCardButton, 
     inputName, 
     inputProfession, 
-    imageModal, 
     templateCardSelector, 
     initialCards
 }
