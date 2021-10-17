@@ -89,8 +89,3 @@ const cardsSection = new Section({
 }, ".cards");
 
 cardsSection.rendererItems();
-
-// api.getInitialCards() 
-//   .then(res => {
-//     console.log('res', res)
-//   })
