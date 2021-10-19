@@ -20,10 +20,10 @@
                     <img src="<%= require('./images/avatar.jpg')%>" alt="artist avatar" class="profile__avatar">
                     <div class="profile__input">
                         <div class="profile__row">
-                            <h1 class="profile__name">Jacques Cousteau</h1>
+                            <h1 class="profile__name"></h1>
                             <button class="profile__edit" type="menu"></button>
                         </div>
-                        <p class="profile__job">Explorer</p>
+                        <p class="profile__job"></p>
                     </div>
                 </div>
                 <button class="profile__add"></button>
@@ -60,7 +60,17 @@
                 <span id="title-input-error"></span>
                 <input id="link-input" type="url" class="form__input form__input-card-link" placeholder="Image link" name="card-link" autocomplete="off" required>
                 <span id="link-input-error"></span>
-                <button class="form__button form__button_disabled" disabled="disabled">Save</button>
+                <button class="form__button form__button_disabled"  type="submit" disabled="disabled">Save</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="modal modal-delete-card">
+        <div class="modal__container">
+            <button class="modal__close-button"></button>
+            <h2 class="modal__title">Delete card</h2>
+            <form action="#" class="form">
+                <button class="form__button">Delete!</button>
             </form>
         </div>
     </div>
