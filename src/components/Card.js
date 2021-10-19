@@ -1,13 +1,15 @@
 export class Card {
-  constructor({name, link, templateCardSelector, handleCardClick, handleDeleteCard, id, owner}, userId) {
-      this._name = name;
-      this._link = link;
+  constructor({data, handleCardClick, handleDeleteCard, templateCardSelector}, userId) {
+      this._name = data.name;
+      this._link = data.link;
       this._handleCardClick = handleCardClick;
       this._handleDeleteCard = handleDeleteCard;
-      this._id = id;
+      this._id = data.id;
       this._userId = userId;
-      this._ownerId = owner._id;
-      console.log(this._userId)
+      this._ownerId = data.owner._id;
+      console.log(this.data, "data");
+      console.log(this._userId, "user123");
+      console.log(this._ownerId, "owner")
 
       this._itemTemplate = document.querySelector(templateCardSelector);
   }

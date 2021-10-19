@@ -44,24 +44,27 @@ confirmModal.setEventListeners();
 
 function createCard(data) {
   const currentCard = new Card({
-    name: data['name'], 
-    link: data['link'], 
-    id: data['_id'], 
-    owner: data['owner'],
-    templateCardSelector: constant.templateCardSelector,
+    data: data,
+    // name: data['name'], 
+    // link: data['link'], 
+    // id: data['_id'], 
+    // owner: data['owner'],
+    
     handleCardClick: () => handleCardClick(data),
     handleDeleteCard:  () => {
-  confirmModal.openModal();
-  confirmModal.setAction(() => {
-  api.deleteCard(data['_id'])
-    .then (res => {
-      currentCard.removeCard();
-      confirmModal.closeModal();
-    })
-  })  
-}
+      confirmModal.openModal();
+      confirmModal.setAction(() => {
+        api.deleteCard(data['_id'])
+          .then (res => {
+            console.log(res, "res");
+            currentCard.removeCard();
+            confirmModal.closeModal();
+          });
+        });
       },
-      userId)  
+  templateCardSelector: constant.templateCardSelector, 
+  } , userId
+);
     
   const itemElement = currentCard.generateCard();
   console.log(itemElement);
@@ -81,10 +84,7 @@ const addCardForm = new PopupWithForm(".modal-add-card",
     })
     .then(res => {
       console.log('res', res);
-      const cardContent = createCard({
-        name: inputValues['card-title'],
-        link: inputValues['card-link'],
-      });
+      const cardContent = createCard(res);
       cardsSection.addItem(cardContent);
       addCardForm.closeModal();
     })
