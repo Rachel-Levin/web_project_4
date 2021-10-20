@@ -36,7 +36,7 @@
 @import url('../blocks/profile/__avatar/profile__avatar.css');
 @import url('../blocks/profile/__avatar-edit/profile__avatar-edit.css');
 @import url('../blocks/profile/__pen/profile__pen.css');
-@import url('../blocks/profile/__avatar-conteiner/profile__avatar-conteiner.css');
+@import url('../blocks/profile/__avatar-container/profile__avatar-container.css');
 
 @import url('../blocks/profile/__card/profile__card.css');
 @import url('../blocks/profile/__name/profile__name.css');
