@@ -28,6 +28,12 @@ export class PopupWithForm extends Popup {
         });
     }
 
+    openModal() {
+        super.openModal();
+        const currentActiveButton = document.querySelector('.modal__open .form__button');
+        currentActiveButton.textContent = "Save";
+    }
+
     closeModal() {
         super.closeModal();
         this._form.reset();

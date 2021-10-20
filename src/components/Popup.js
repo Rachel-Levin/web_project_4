@@ -6,8 +6,6 @@ export class Popup {
 
     openModal() {
         this._modal.classList.add("modal__open");
-        const currentActiveButton = document.querySelector('.modal__open .form__button');
-        currentActiveButton.textContent = "Save";
         document.addEventListener("click", this._handleOverlayClick);
         document.addEventListener("keyup", this._handleEsc);
     }
