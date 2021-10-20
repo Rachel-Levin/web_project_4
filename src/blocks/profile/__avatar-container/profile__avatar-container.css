@@ -1,7 +1,7 @@
-.profile__avatar-conteiner {
+.profile__avatar-container {
     position: relative;
     margin-top: 40px;
 }
-.profile__avatar-conteiner:hover .profile__pen {
+.profile__avatar-container:hover .profile__pen {
     display: block;
 }
