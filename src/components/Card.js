@@ -1,22 +1,25 @@
 export class Card {
-  constructor({data, handleCardClick, handleDeleteCard, templateCardSelector}, userId) {
+  constructor({data, handleCardClick, handleDeleteCard, templateCardSelector, handleLikeIcon}, userId) {
       this._name = data.name;
       this._link = data.link;
       this._handleCardClick = handleCardClick;
       this._handleDeleteCard = handleDeleteCard;
+      this._handleLikeIcon = handleLikeIcon;
       this._id = data.id;
       this._userId = userId;
       this._ownerId = data.owner._id;
+      this._likes = data.likes;
       console.log(this.data, "data");
       console.log(this._userId, "user123");
       console.log(this._ownerId, "owner")
 
       this._itemTemplate = document.querySelector(templateCardSelector);
+      this._itemElement = this._itemTemplate.content.querySelector('.gallery');
   }
 
-  _handleLikeIcon(evt) {
-      evt.target.classList.toggle("gallery__like-active");
-  };
+//   _handleLikeIcon(evt) {
+//       evt.target.classList.toggle("gallery__like-active");
+//   };
 
   removeCard () {
     //   evt.target.closest(".gallery").remove();
@@ -34,12 +37,25 @@ export class Card {
       deleteCard.addEventListener("click", this._handleDeleteCard);
       image.addEventListener("click", this._handleCardClick);
   }
+//   document
+//   .querySelector(this._cardSelector)
+//   .content
+//   .querySelector('.card')
+//   .cloneNode(true);
+
+  likeCard(newLikes) {
+    this._likes = newLikes;
+    this._element.querySelector(".gallery__likes-count").textContent = this._likes.length;
+            
+    this._element.querySelector(".gallery__like").classList.toggle("gallery__like-active");
+  }
+
+  isLiked() {
+    return this._likes.some((person) => person._id === this._userId);
+}
 
   generateCard = () => {
-
-
-      this._itemElement = this._itemTemplate.cloneNode(true);
-      this._element = this._itemElement.content;
+      this._element = this._itemElement.cloneNode(true);
     
       const image = this._element.querySelector(".gallery__image");
       const title = this._element.querySelector(".gallery__title");
@@ -49,6 +65,14 @@ export class Card {
 
       if(this._ownerId !== this._userId) {
         this._element.querySelector(".gallery__delete").style.display = 'none';
+      }
+
+      this._element.querySelector(".gallery__likes-count").textContent = this._likes.length;
+      
+    //   const isLiked = this._likes.some((person) => person._id === this._userId);
+
+      if (this.isLiked()) {
+        this.likeCard(this._likes)
       }
 
       this._addEventListeners();

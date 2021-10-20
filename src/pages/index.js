@@ -22,9 +22,11 @@ import PopupWithSubmit from '../components/PopupWithSubmit';
 
 const addCardFormValidator = new FormValidator(constant.settings, constant.addCard);
 const editModalFormValidator = new FormValidator(constant.settings, constant.editModal);
+const editAvatarFormValidator = new FormValidator(constant.settings, constant.editAvatar);
 
 addCardFormValidator.enableValidation();
 editModalFormValidator.enableValidation();
+editAvatarFormValidator.enableValidation();
 
 const imageModal = new PopupWithImage(".modal-full-screen");
 imageModal.setEventListeners();
@@ -32,76 +34,93 @@ const confirmModal = new PopupWithSubmit(".modal-delete-card");
 
 confirmModal.setEventListeners();
 
-// const handleDeleteCard = (id) => {
-//   confirmModal.openModal();
-//   confirmModal.setAction(() => {
-//   api.deleteCard(id)
-//     .then (res => {
-//       currentCard.removeCard();
-//     })
-//   })  
-// }
-
 function createCard(data) {
   const currentCard = new Card({
     data: data,
-    // name: data['name'], 
-    // link: data['link'], 
-    // id: data['_id'], 
-    // owner: data['owner'],
-    
     handleCardClick: () => handleCardClick(data),
     handleDeleteCard:  () => {
       confirmModal.openModal();
       confirmModal.setAction(() => {
         api.deleteCard(data['_id'])
           .then (res => {
-            console.log(res, "res");
             currentCard.removeCard();
             confirmModal.closeModal();
           });
         });
+      },
+      handleLikeIcon:() => {
+
+        const isAlreadyLiked = currentCard.isLiked();
+        if (isAlreadyLiked) {
+          api.deleteLike(data['_id'])
+          .then(res => {
+            currentCard.likeCard(res.likes);
+          })
+        } else {
+          api.likeCard(data['_id'])
+          .then(res => {
+            currentCard.likeCard(res.likes);
+          });
+        }
       },
   templateCardSelector: constant.templateCardSelector, 
   } , userId
 );
     
   const itemElement = currentCard.generateCard();
-  console.log(itemElement);
   return itemElement;
 }
 
-// api.createCard(data)
-// .then(res => {
-//   console.log('res', res)
-// })
+const editAvatarForm = new PopupWithForm (".modal-avatar-edit", (inputValues) => {
+  userProfile.setUserAvatar({link: inputValues['card-link']});
+  api.setUserAvatar({avatar: inputValues['card-link']})
+  .then(editAvatarForm.closeModal())
+})
+
+  editAvatarForm.setEventListeners()
 
 const addCardForm = new PopupWithForm(".modal-add-card",
   (inputValues) => {
+    renderLoading(true);
     api.createCard({
       name: inputValues['card-title'],
       link: inputValues['card-link'],
     })
     .then(res => {
-      console.log('res', res);
       const cardContent = createCard(res);
       cardsSection.addItem(cardContent);
-      addCardForm.closeModal();
+      
     })
-    
+    .finally(() => {
+            renderLoading();
+            addCardForm.closeModal();
+          });
   }
 );
 addCardForm.setEventListeners();
 
 const editProfileForm = new PopupWithForm(".modal-edit",
   (inputValues) => {
-    // userProfile.setUserInfo(inputValues);
+    renderLoading(true);
+    api.setUserInfo({
+      name: inputValues.name,
+      about: inputValues.profession
+  })
+  .then((res) => {
+    userProfile.setUserInfo(inputValues);
+
+  })
+  .finally(() => {
+    renderLoading();
     editProfileForm.closeModal();
-  }
+  });
+}
+    
+  
 );
 editProfileForm.setEventListeners();
 
-const userProfile = new UserInfo(".profile__name", ".profile__job");
+const userProfile = new UserInfo(".profile__name", ".profile__job", ".profile__avatar");
 
 constant.addCardButton.addEventListener("click", () => {
   addCardFormValidator.resetValidation();
@@ -116,6 +135,11 @@ constant.editButton.addEventListener("click", function () {
   editProfileForm.openModal();
 });
 
+constant.avatarEditButton.addEventListener("click", function() {
+  editAvatarFormValidator.resetValidation();
+  editAvatarForm.openModal();
+});
+
 const handleCardClick = (data) => {
   imageModal.openModal();
   constant.imageActive.src = data.link;
@@ -126,33 +150,29 @@ const handleCardClick = (data) => {
 
 
 const cardsSection = new Section({
-  // items: constant.initialCards,
   renderer: (data) => {
     const card = createCard(data);
     cardsSection.addItem(card);
   },
 }, ".cards");
 
-// cardsSection.rendererItems();
+  export const renderLoading = (isLoading = false) => {
+    const currentActiveButton = document.querySelector('.modal__open .form__button');
+  
+    currentActiveButton.textContent = isLoading ? 'Loading...' : 'Loaded';
+  };
 
-// api.getInitialCards() 
-//   .then(res => {
-//     cardsSection.rendererItems(res);
-//     console.log('res', res)
-//   });
-
-  // api.getUserInfo() 
-  // .then(res => {
-  //   userProfile.setUserInfo({name: res.name, profession: res.about})
-  //   console.log('res', res)
-  // });
 
   let userId
 
-  Promise.all([api.getInitialCards(), api.getUserInfo()])
-    .then(([cardData, userData]) => {
+  Promise.all([api.getInitialCards(), api.getUserInfo(), api.getUserAvatar()])
+    .then(([cardData, userData, userAvatar]) => {
+      userProfile.setUserAvatar({link: userAvatar['avatar']})
       userId = userData._id;
-      console.log(userId)
       cardsSection.rendererItems(cardData);
       userProfile.setUserInfo({name: userData.name, profession: userData.about})
     })
+
+
+  
+    

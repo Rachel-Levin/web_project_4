@@ -1,0 +1,7 @@
+.profile__pen {
+    position: absolute;
+    top: 47px;
+    left: 47px;
+    display: none;
+    width: 26px;
+}

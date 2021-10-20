@@ -3,14 +3,12 @@
     background-color: white;
     border-radius: 10px;
     position: relative;
-    height: 260px;
     margin: 195px auto auto auto;
 
 }
 
 @media screen and (max-width: 540px) {
     .modal__container {
-        height: 322px;
         width: 210px;
     }
     }
