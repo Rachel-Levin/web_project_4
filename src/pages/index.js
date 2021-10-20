@@ -73,9 +73,12 @@ function createCard(data) {
 
 const editAvatarForm = new PopupWithForm (".modal-avatar-edit", (inputValues) => {
   api.setUserAvatar({avatar: inputValues['card-link']})
-  .then(
-    userProfile.setUserAvatar({link: inputValues['card-link']}),
-    editAvatarForm.closeModal())
+  .then(res => {
+    if (res) {
+        userProfile.setUserAvatar({link: inputValues['card-link']}),
+        editAvatarForm.closeModal()
+      }
+    })
 })
 
   editAvatarForm.setEventListeners()
